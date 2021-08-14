@@ -32,7 +32,8 @@ Pcap_DNSProxy is a tool based on WinPcap/LibPcap which can filter DNS poisoning.
   * **64-bit/x64: Windows Vista/2008 and later.**
   * **32-bit/x86: Windows XP SP3/2003 SP2 and later.**
 * FreeBSD/Linux
-  * FreeBSD/Linux which support all [dependency packages](https://github.com/chengr28/Pcap_DNSProxy/tree/master/Documents).
+  * FreeBSD/Linux which support all [dependency packages](./Documents/).
+  * Install dependencies `libssl-dev libsodium-dev libevent-dev libpcap-dev` first.
 * macOS
   * **64-bit Mac OS X 10.8(Mountain Lion) and later.**
 * OpenWrt/LEDE
