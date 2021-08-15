@@ -20,5 +20,11 @@
 # CMake minimum version
 cmake_minimum_required(VERSION 3.1)
 
+project(pcap_dns_proxy)
+
+option(ENABLE_PCAP "ENABLE_PCAP" ON)
+option(ENABLE_LIBSODIUM "ENABLE_LIBSODIUM" ON)
+option(ENABLE_TLS "ENABLE_TLS" ON)
+
 # Sub directories
 add_subdirectory(Source/Pcap_DNSProxy)

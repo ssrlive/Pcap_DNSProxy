@@ -22,7 +22,12 @@ cmake_minimum_required(VERSION 3.1)
 
 # Project name, build type and list all source files.
 project(Pcap_DNSProxy)
-set(CMAKE_BUILD_TYPE "Release")
+
+if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE "Debug")
+endif()
+message(STATUS "CMake build type is ${CMAKE_BUILD_TYPE}")
+
 set(MAIN_SRC_FILES
 		"Base.h"
 		"Capture.h"
@@ -77,7 +82,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 IF(CMAKE_SYSTEM_NAME MATCHES "Darwin")
 	add_definitions(-std=c++14)
 ENDIF(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-IF(NOT PLATFORM_OPENWRT)
+
+string(TOUPPER ${CMAKE_BUILD_TYPE} CMAKE_BUILD_TYPE_UP)
+IF((NOT PLATFORM_OPENWRT) AND (${CMAKE_BUILD_TYPE_UP} STREQUAL "RELEASE"))
 	IF(CMAKE_VERSION VERSION_LESS "3.9")
 		add_definitions(-flto)
 	ELSE(CMAKE_VERSION VERSION_LESS "3.9")
@@ -101,7 +108,7 @@ IF(NOT PLATFORM_OPENWRT)
 #	add_definitions(-mcet)
 	add_definitions(-pipe)
 	add_definitions(-O3)
-ENDIF(NOT PLATFORM_OPENWRT)
+ENDIF()
 
 # Platform and library definitions
 IF(PLATFORM_OPENWRT)
