@@ -4,5 +4,6 @@ Debug/
 .vscode/
 .vs/
 x64/
-
+.idea/
+cmake-build-*/
 
