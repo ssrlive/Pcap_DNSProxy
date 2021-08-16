@@ -22,7 +22,7 @@
 # Create release directories and set permissions.
 cd ../..
 rm -Rrf Object
-mkdir Release
+rm -rf Release && mkdir Release
 chmod -R 755 Auxiliary/Scripts
 
 # Set thread number variable.
@@ -35,7 +35,7 @@ fi
 # Build Pcap_DNSProxy.
 mkdir Object
 cd Object
-CMakeShell="cmake "
+CMakeShell="cmake -DCMAKE_BUILD_TYPE=Release "
 if !(echo "$*" | grep -iq -e "--disable-libpcap"); then
 	CMakeShell="${CMakeShell}-DENABLE_PCAP=ON "
 fi
@@ -49,6 +49,7 @@ if (echo "$*" | grep -iq -e "--enable-static"); then
 	CMakeShell="${CMakeShell}-DSTATIC_LIB=ON "
 fi
 CMakeShell="${CMakeShell}../Pcap_DNSProxy"
+echo ${CMakeShell}
 ${CMakeShell}
 make -j ${ThreadNum}
 cd ..
